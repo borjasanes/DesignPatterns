@@ -8,7 +8,7 @@ namespace DesignPatternsTest.Creational
     public class BuilderTest
     {
         [TestMethod]
-        public void BuildAVehicle()
+        public void Given_AVehicle_When_2DoorsAnd4Wheels_Should_Create()
         {
             var sut = VehicleBuilder.AVehicleBuilder()
                 .WithDoors(2)
