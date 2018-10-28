@@ -1,12 +1,16 @@
-﻿using System;
+﻿using Creational;
 
 namespace DesignPatterns
 {
-    class Program
+    internal class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            var vehicle = VehicleBuilder.AVehicleBuilder()
+                .WithDoors(4)
+                .WithWheels(4);
+
+
         }
     }
 }
