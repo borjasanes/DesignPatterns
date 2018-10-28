@@ -1,9 +1,9 @@
-﻿namespace Creational
+﻿namespace Creational.Builder
 {
     public class VehicleBuilder
     {
-        private int Wheels { get; set; }
-        private int Doors { get; set; }
+        private static int Wheels { get; set; }
+        private static int Doors { get; set; }
 
         public static VehicleBuilder AVehicleBuilder()
         {
