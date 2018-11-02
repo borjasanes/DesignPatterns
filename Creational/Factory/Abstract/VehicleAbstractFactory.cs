@@ -4,6 +4,10 @@ using Creational.Factory.Models;
 
 namespace Creational.Factory.Abstract
 {
+    /// <summary>
+    /// Provide an interface for creating families of related or dependent objects
+    /// without specifying their concrete classes.
+    /// </summary>
     public abstract class VehicleAbstractFactory
     {
         private readonly IVehicleFactory _factory;
@@ -25,6 +29,10 @@ namespace Creational.Factory.Abstract
         public VanWithAbstractFactory() :
             base(new VanFactory())
         { }
+
+        public VanWithAbstractFactory(IVehicleFactory factory) :
+            base(factory)
+        { }
     }
 
     public class CarWithAbstractFactory :
@@ -33,6 +41,10 @@ namespace Creational.Factory.Abstract
         public CarWithAbstractFactory() :
             base(new CarFactory())
         { }
+
+        public CarWithAbstractFactory(IVehicleFactory factory) :
+            base(factory)
+        { }
     }
 
     public class MotoWithAbstractFactory :
@@ -40,6 +52,10 @@ namespace Creational.Factory.Abstract
     {
         public MotoWithAbstractFactory() :
             base(new MotoFactory())
+        { }
+
+        public MotoWithAbstractFactory(IVehicleFactory factory) :
+            base(factory)
         { }
     }
 }
