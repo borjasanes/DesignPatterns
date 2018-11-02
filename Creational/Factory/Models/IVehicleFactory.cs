@@ -1,6 +1,4 @@
-﻿using Creational.Factory.Models;
-
-namespace Creational.Factory.Contracts
+﻿namespace Creational.Factory.Models
 {
     /// <summary>
     /// Provide an interface for creating families of related or dependent objects

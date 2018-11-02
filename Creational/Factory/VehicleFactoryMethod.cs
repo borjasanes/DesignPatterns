@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Creational.Factory.Contracts;
-using Creational.Factory.Models;
+﻿using Creational.Factory.Models;
 
-namespace Creational.Factory.Method
+namespace Creational.Factory
 {
     /// <summary>
     /// Define an interface for creating an object
@@ -31,7 +27,7 @@ namespace Creational.Factory.Method
     {
         public IVehiche CreateVehiche()
         {
-            return new Van();
+            return new Moto();
         }
     }
 

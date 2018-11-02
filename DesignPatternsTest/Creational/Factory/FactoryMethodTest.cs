@@ -1,4 +1,4 @@
-﻿using Creational.Factory.Method;
+﻿using Creational.Factory;
 using Creational.Factory.Models;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 

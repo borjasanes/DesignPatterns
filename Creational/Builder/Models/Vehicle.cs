@@ -1,4 +1,4 @@
-﻿namespace Creational.Builder
+﻿namespace Creational.Builder.Models
 {
     public class Vehicle
     {

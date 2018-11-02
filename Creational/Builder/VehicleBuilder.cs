@@ -1,4 +1,6 @@
-﻿namespace Creational.Builder
+﻿using Creational.Builder.Models;
+
+namespace Creational.Builder
 {
     /// <summary>
     /// Separate the construction of a complex object from its representation

@@ -1,6 +1,6 @@
 ﻿using Creational.Factory.Models;
 
-namespace Creational.Factory.Simple
+namespace Creational.Factory
 {
     /// <summary>
     /// Encapsulate the class instantiation in one place
