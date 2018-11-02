@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Text;
+﻿using Creational.Factory.Models;
 
-namespace Creational.Factory
+namespace Creational.Factory.Simple
 {
     /// <summary>
-    /// Define an interface for creating an object, but let subclasses decide which class to instantiate
+    /// Encapsulate the class instantiation in one place
+    /// 
+    /// Violates OPEN CLOSE principle when adding more types.
     /// </summary>
     public static class VehicleFactory
     {

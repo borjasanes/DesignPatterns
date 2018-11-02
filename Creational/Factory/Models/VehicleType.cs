@@ -1,4 +1,4 @@
-﻿namespace Creational.Factory
+﻿namespace Creational.Factory.Models
 {
     public enum VehicleType
     {

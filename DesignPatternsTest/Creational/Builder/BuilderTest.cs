@@ -1,8 +1,7 @@
-using Creational;
 using Creational.Builder;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace DesignPatternsTest.Creational
+namespace DesignPatternsTest.Creational.Builder
 {
     [TestClass]
     public class BuilderTest
