@@ -5,7 +5,9 @@ VisualStudioVersion = 15.0.28010.2003
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Creational", "Creational\Creational.csproj", "{24B7D837-7D1F-4EA2-8E54-576A9F37410C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DesignPatternsTest", "DesignPatternsTest\DesignPatternsTest.csproj", "{F63D1737-115E-4A55-A8A4-919D3DE3BB3E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DesignPatternsTest", "DesignPatternsTest\DesignPatternsTest.csproj", "{F63D1737-115E-4A55-A8A4-919D3DE3BB3E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Behavioral", "Behavioral\Behavioral.csproj", "{9ADEB858-6951-49BA-9896-9999BC75EFA9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{F63D1737-115E-4A55-A8A4-919D3DE3BB3E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F63D1737-115E-4A55-A8A4-919D3DE3BB3E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F63D1737-115E-4A55-A8A4-919D3DE3BB3E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9ADEB858-6951-49BA-9896-9999BC75EFA9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9ADEB858-6951-49BA-9896-9999BC75EFA9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9ADEB858-6951-49BA-9896-9999BC75EFA9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9ADEB858-6951-49BA-9896-9999BC75EFA9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
