@@ -32,15 +32,6 @@ namespace Behavioral.Strategy
         }
     }
 
-    public class MobileAppNotificationSender : NotificationSender
-    {
-        public MobileAppNotificationSender()
-            : base(new SmsProviderOne())
-        {
-
-        }
-    }
-
     public class SmsProviderOne : INotificationProvider
     {
         public string Send(string target, string content)

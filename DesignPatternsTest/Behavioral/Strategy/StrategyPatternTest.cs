@@ -11,7 +11,7 @@ namespace DesignPatternsTest.Behavioral.Strategy
         [DataRow("697111888", "welcome to strategy pattern")]
         public void Given_AnApp_When_SendNotification_Should_Send(string target, string content)
         {
-            var smsNotificationSender = new MobileAppNotificationSender();
+            var smsNotificationSender = new NotificationSender(new SmsProviderOne());
 
             try
             {
@@ -19,7 +19,7 @@ namespace DesignPatternsTest.Behavioral.Strategy
             }
             catch (Exception)
             {
-                //Provider 1 fail, switch to provider 2
+                //Provider fail switch provider
                 smsNotificationSender.ChangeProvider(new SmsProviderTwo());
             }
 
