@@ -1,3 +1,4 @@
+using System;
 using Creational.Builder;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -7,15 +8,16 @@ namespace DesignPatternsTest.Creational.Builder
     public class BuilderTest
     {
         [TestMethod]
-        public void Given_AVehicle_When_2DoorsAnd4Wheels_Should_Create()
+        [DataRow("name","phone")]
+        public void Given_AContact_When_NameAndPhone_Should_Create(string name, string phone)
         {
-            var sut = VehicleBuilder.AVehicleBuilder()
-                .WithDoors(2)
-                .WithWheels(4)
+            var sut = ContactBuilder.AContactBuilder()
+                .WithName(name)
+                .WithPhone(phone)
                 .Build();
 
-            Assert.AreEqual(2, sut.Doors);
-            Assert.AreEqual(4, sut.Wheels);
+            Assert.AreEqual(name, sut.Name);
+            Assert.AreEqual(phone, sut.Phone);
         }
     }
 }
