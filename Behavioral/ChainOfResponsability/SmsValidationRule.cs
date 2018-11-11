@@ -46,11 +46,11 @@ namespace Behavioral.ChainOfResponsability
 
     public class ExpiredRule : SmsValidationRule
     {
-        private const int ExpirationMinutes = 30;
+        private const int ExpirationMinutes = -30;
 
         public override bool IsValid(SmsValidation smsValidation)
         {
-            if (smsValidation.Sent.AddMinutes(ExpirationMinutes) > DateTime.UtcNow)
+            if (smsValidation.Sent < DateTime.UtcNow.AddMinutes(ExpirationMinutes))
             {
                 return false;
             }

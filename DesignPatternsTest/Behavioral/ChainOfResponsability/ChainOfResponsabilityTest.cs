@@ -9,6 +9,18 @@ namespace DesignPatternsTest.Behavioral.ChainOfResponsability
     [TestClass]
     public class ChainOfResponsabilityTest
     {
+        private readonly SmsValidationRule _smsValidationRule;
+
+        public ChainOfResponsabilityTest()
+        {
+            _smsValidationRule = new AttemptsRule();
+            var expiredRule = new ExpiredRule();
+            var validCodeRule = new ValidCodeRule();
+
+            _smsValidationRule.SetNext(expiredRule);
+            expiredRule.SetNext(validCodeRule);
+        }
+
         [TestMethod]
         public void Given_ASmsValidation_When_MaxAttemps_Should_BeNotValid()
         {
@@ -20,11 +32,7 @@ namespace DesignPatternsTest.Behavioral.ChainOfResponsability
                 Sent = DateTime.UtcNow.AddMinutes(-10)
             };
 
-            SmsValidationRule attemptsRule = new AttemptsRule();
-            attemptsRule.SetNext(new ExpiredRule());
-            attemptsRule.SetNext(new ValidCodeRule());
-
-            Assert.IsFalse(attemptsRule.IsValid(smsValidation));
+            Assert.IsFalse(_smsValidationRule.IsValid(smsValidation));
         }
 
         [TestMethod]
@@ -38,11 +46,7 @@ namespace DesignPatternsTest.Behavioral.ChainOfResponsability
                 Sent = DateTime.UtcNow.AddMinutes(-10)
             };
 
-            SmsValidationRule attemptsRule = new AttemptsRule();
-            attemptsRule.SetNext(new ExpiredRule());
-            attemptsRule.SetNext(new ValidCodeRule());
-
-            Assert.IsFalse(attemptsRule.IsValid(smsValidation));
+            Assert.IsFalse(_smsValidationRule.IsValid(smsValidation));
         }
 
         [TestMethod]
@@ -56,11 +60,7 @@ namespace DesignPatternsTest.Behavioral.ChainOfResponsability
                 Sent = DateTime.UtcNow.AddMinutes(-10)
             };
 
-            SmsValidationRule attemptsRule = new AttemptsRule();
-            attemptsRule.SetNext(new ExpiredRule());
-            attemptsRule.SetNext(new ValidCodeRule());
-
-            Assert.IsTrue(attemptsRule.IsValid(smsValidation));
+            Assert.IsTrue(_smsValidationRule.IsValid(smsValidation));
         }
     }
 }
