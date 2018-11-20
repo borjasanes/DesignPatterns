@@ -8,11 +8,12 @@ namespace DesignPatternsTest.Creational.Factory
     public class FactoryMethodTest
     {
         [TestMethod]
-        public void Given_AVehicleFactory_When_IsVanFactory_Should_BuildAVan()
+        [DataRow("borja", "mail@domain.com", "borja@hotmail.com")]
+        public void Given_AMailFactory_When_IsWelcomeFactory_Should_CreateWelcomeTemplate(string name,string from, string to)
         {
-            var sut = new VanFactory().CreateVehiche();
+            var sut = new WelcomeMailFactory().CreateMailProperties(name, from, to);
             
-            Assert.IsNotNull(sut as Van);
+            Assert.IsNotNull(sut as WelcomeMail);
         }
     }
 }
