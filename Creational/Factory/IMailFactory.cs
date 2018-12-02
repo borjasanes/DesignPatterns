@@ -1,5 +1,4 @@
 ﻿using System.Dynamic;
-using Creational.Factory.Models;
 
 namespace Creational.Factory
 {
