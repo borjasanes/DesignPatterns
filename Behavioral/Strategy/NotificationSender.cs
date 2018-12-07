@@ -2,6 +2,10 @@
 
 namespace Behavioral.Strategy
 {
+    /// <summary>
+    /// Define a family of algorithms, encapsulate each one,
+    /// and make them interchangeable.
+    /// </summary>
     public interface INotificationSender
     {
         string SendNotification(string target, string content);
@@ -23,7 +27,7 @@ namespace Behavioral.Strategy
 
         public string SendNotification(string target, string content)
         {
-            return _provider.Send(target, content);
+            return _provider.Send(target, content); //strategy
         }
 
         public void ChangeProvider(INotificationProvider provider)
