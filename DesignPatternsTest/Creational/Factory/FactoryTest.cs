@@ -9,9 +9,10 @@ namespace DesignPatternsTest.Creational.Factory
         [TestMethod]
         public void Given_AVehicleType_When_IsAMoto_Should_CreateAMoto()
         {
-            var sut = ConnectionFactory.CreateSqlConnection("ES");
+            var sut = ConnectionFactory.GetConnectionString("ES");
 
             Assert.IsNotNull(sut);
+            Assert.AreEqual("SpainDb", sut);
         }
     }
 }

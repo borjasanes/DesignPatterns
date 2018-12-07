@@ -8,16 +8,16 @@ namespace Creational.Factory
     /// </summary>
     public static class ConnectionFactory
     {
-        public static SqlConnection CreateSqlConnection(string country)
+        public static string GetConnectionString(string country)
         {
             switch (country)
             {
                 case "ES":
-                    return new SqlConnection("SpainDb");
+                    return "SpainDb";
                 case "DK":
-                    return new SqlConnection("DenmarkDb");
+                    return "DenmarkDb";
                 case "AT":
-                    return new SqlConnection("AustriaDb");
+                    return "AustriaDb";
                 default:
                     return null;
             }
