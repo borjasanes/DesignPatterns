@@ -4,7 +4,15 @@ using System.Text;
 
 namespace Structural.Decorator
 {
-    public class Coupon
+    public interface ICoupon
+    {
+        string Color { get; set; }
+        long BaseDiscount { get; set; }
+        string Title { get; set; }
+        double CalculateDiscount();
+    }
+
+    public class Coupon : ICoupon
     {
         public string Color { get; set; }
         public long BaseDiscount { get; set; }
@@ -16,19 +24,22 @@ namespace Structural.Decorator
         }
     }
 
-    public class CouponBio : Coupon
+    public class CouponBio : ICoupon
     {
-        public new double CalculateDiscount()
-        {
-            return base.CalculateDiscount() * .15;
-        }
-    }
+        private readonly ICoupon _coupon;
 
-    public class CouponVegan : Coupon
-    {
-        public new double CalculateDiscount()
+        public CouponBio(ICoupon coupon)
         {
-            return base.CalculateDiscount() * .20;
+            _coupon = coupon;
+        }
+
+        public string Color { get; set; }
+        public long BaseDiscount { get; set; }
+        public string Title { get; set; }
+
+        public double CalculateDiscount()
+        {
+            return _coupon.CalculateDiscount() * 2;
         }
     }
 }

@@ -16,9 +16,13 @@ namespace DesignPatternsTest.Structural
 
             Assert.AreEqual(10, sut.CalculateDiscount());
 
-            var sut2 = new CouponBio { BaseDiscount = 10, Color = "Red", Title = "Welcome Bio" };
+            var sut2 = new CouponBio(sut);
 
-            Assert.AreEqual(1.5, sut2.CalculateDiscount());
+            Assert.AreEqual(20, sut2.CalculateDiscount());
+
+            var sut3 = new CouponBio(sut2); // apply 2 times coupon bio discount
+
+            Assert.AreEqual(40, sut3.CalculateDiscount());
         }
     }
 }
