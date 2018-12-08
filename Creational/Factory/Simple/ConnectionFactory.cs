@@ -1,5 +1,5 @@
 ﻿
-namespace Creational.Factory
+namespace Creational.Factory.Simple
 {
     /// <summary>
     /// Encapsulate the class instantiation in one place

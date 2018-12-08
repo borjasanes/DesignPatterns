@@ -1,4 +1,5 @@
 ﻿using Creational.Factory;
+using Creational.Factory.Simple;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace DesignPatternsTest.Creational.Factory
