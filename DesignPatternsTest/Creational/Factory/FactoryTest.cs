@@ -8,12 +8,14 @@ namespace DesignPatternsTest.Creational.Factory
     public class FactoryTest
     {
         [TestMethod]
-        public void Given_AVehicleType_When_IsAMoto_Should_CreateAMoto()
+        [DataRow(TokenType.Guid, 36)]
+        [DataRow(TokenType.FourDigitsCode, 4)]
+        public void Given_ATokenType_Shoul_BeValidLength(TokenType tokenType, int tokenLength)
         {
-            var sut = ConnectionFactory.GetConnectionString("ES");
+            var sut = TokenFactory.GetToken(tokenType);
 
             Assert.IsNotNull(sut);
-            Assert.AreEqual("SpainDb", sut);
+            Assert.AreEqual(tokenLength, sut.Length);
         }
     }
 }

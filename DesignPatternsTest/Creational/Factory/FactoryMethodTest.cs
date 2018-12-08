@@ -8,13 +8,19 @@ namespace DesignPatternsTest.Creational.Factory
     public class FactoryMethodTest
     {
         [TestMethod]
-        [DataRow("borja", "mail@domain.com", "borja@hotmail.com", "Welcome borja.")]
-        public void Given_AMailFactory_When_IsWelcomeFactory_Should_CreateWelcomeTemplate(string name,string from, string to, string body)
+        public void Given_ATokenFactory_When_FourDigit_Should_Create4DigitCode()
         {
-            var sut = new WelcomeMailFactory().BuildMailProperties(name, from, to);
+            var sut = new FourDigitTokenFactory().CreateToken();
             
-            Assert.IsNotNull(sut as WelcomeMail);
-            Assert.IsNotNull(body, sut.Body);
+            Assert.IsNotNull(4, sut);
+        }
+
+        [TestMethod]
+        public void Given_ATokenFactory_When_Guid_Should_CreateGuidCode()
+        {
+            var sut = new GuidTokenFactory().CreateToken();
+
+            Assert.IsNotNull(36, sut);
         }
     }
 }

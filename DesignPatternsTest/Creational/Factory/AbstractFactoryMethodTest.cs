@@ -12,13 +12,13 @@ namespace DesignPatternsTest.Creational.Factory
     {
         [TestMethod]
         [DataRow("borja", "plain")]
-        public void Given_Senders_When_SameTokenProvider_Should_BeSameTokenFormat(string from, string to)
+        public void Given_Senders_When_DefaultFactory_Should_BeValidToken(string from, string to)
         {
-            var sut = new MailNotification(new TwoDigitsCodeFactory()).SendNotification(from, to);
+            var sut = new MailNotificationSender().SendNotification(from, to);
 
-            var sut2 = new SmsNotification(new TwoDigitsCodeFactory()).SendNotification(from, to);
+            var sut2 = new SmsNotificationSender().SendNotification(from, to);
 
-            Assert.AreEqual(4, sut.Length);
+            Assert.AreEqual(36, sut.Length);
             Assert.AreEqual(4, sut2.Length);
         }
 
@@ -26,9 +26,9 @@ namespace DesignPatternsTest.Creational.Factory
         [DataRow("borja", "plain")]
         public void Given_ASender_When_ChangeProvider_Should_ReturnDiferentToken(string from, string to)
         {
-            var sut = new MailNotification().SendNotification(from, to);
+            var sut = new MailNotificationSender().SendNotification(from, to);
 
-            var sut2 = new MailNotification(new TwoDigitsCodeFactory()).SendNotification("from", "to");
+            var sut2 = new MailNotificationSender(new FourDigitsCodeFactory()).SendNotification("from", "to");
 
             Assert.AreEqual(36, sut.Length);
             Assert.AreEqual(4, sut2.Length);

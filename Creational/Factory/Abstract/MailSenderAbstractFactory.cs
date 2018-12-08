@@ -5,7 +5,7 @@ namespace Creational.Factory.Abstract
 {
     public abstract class NotificationAbstractFactory
     {
-        public abstract string CreateNotification();
+        public abstract string CreateToken();
     }
 
     public class NotificationSender
@@ -19,41 +19,41 @@ namespace Creational.Factory.Abstract
 
         public string SendNotification(string from, string to)
         {
-            return _notificationAbstractFactory.CreateNotification(); // abstract factory
+            return _notificationAbstractFactory.CreateToken(); // abstract factory
         }
     }
 
-    public class MailNotification : NotificationSender
+    public class MailNotificationSender : NotificationSender
     {
-        public MailNotification(NotificationAbstractFactory factory) : base(factory)
+        public MailNotificationSender(NotificationAbstractFactory factory) : base(factory)
         { }
 
-        public MailNotification() : base(new TokenFactory())
+        public MailNotificationSender() : base(new GuidTokenFactory())
         { }
     }
 
-    public class SmsNotification : NotificationSender
+    public class SmsNotificationSender : NotificationSender
     {
-        public SmsNotification(NotificationAbstractFactory factory) : base(factory)
+        public SmsNotificationSender(NotificationAbstractFactory factory) : base(factory)
         { }
 
-        public SmsNotification() : base(new TwoDigitsCodeFactory())
+        public SmsNotificationSender() : base(new FourDigitsCodeFactory())
         { }
     }
 
-    public class TokenFactory : NotificationAbstractFactory
+    public class GuidTokenFactory : NotificationAbstractFactory
     {
-        public override string CreateNotification()
+        public override string CreateToken()
         {
             return Guid.NewGuid().ToString();
         }
     }
 
-    public class TwoDigitsCodeFactory : NotificationAbstractFactory
+    public class FourDigitsCodeFactory : NotificationAbstractFactory
     {
         private static readonly Random Random = new Random();
 
-        public override string CreateNotification()
+        public override string CreateToken()
         {
             return Random.Next(1000, 9999).ToString();
         }
