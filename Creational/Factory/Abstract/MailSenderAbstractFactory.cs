@@ -5,47 +5,47 @@ namespace Creational.Factory.Abstract
 {
     /// <summary>
     /// the Abstract Factory pattern, a class delegates the responsibility
-    /// of object instantiation to another object via composition ...
+    /// of object instantiation to another object via composition
     /// </summary>
-    public abstract class NotificationAbstractFactory
+    public abstract class TokenFactory
     {
         public abstract string CreateToken();
     }
 
-    public class NotificationSender
+    public class NotificationSenderAbstractFactory
     {
-        private readonly NotificationAbstractFactory _notificationAbstractFactory;
+        private readonly TokenFactory _tokenFactory;
 
-        protected NotificationSender(NotificationAbstractFactory notificationAbstractFactory)
+        protected NotificationSenderAbstractFactory(TokenFactory tokenFactory)
         {
-            _notificationAbstractFactory = notificationAbstractFactory;
+            _tokenFactory = tokenFactory;
         }
 
         public string SendNotification(string from, string to)
         {
-            return _notificationAbstractFactory.CreateToken();
+            return _tokenFactory.CreateToken();
         }
     }
 
-    public class MailNotificationSender : NotificationSender
+    public class MailNotificationSenderAbstractFactory : NotificationSenderAbstractFactory
     {
-        public MailNotificationSender(NotificationAbstractFactory factory) : base(factory)
+        public MailNotificationSenderAbstractFactory(TokenFactory factory) : base(factory)
         { }
 
-        public MailNotificationSender() : base(new GuidTokenFactory())
+        public MailNotificationSenderAbstractFactory() : base(new GuidTokenFactory())
         { }
     }
 
-    public class SmsNotificationSender : NotificationSender
+    public class SmsNotificationSenderAbstractFactory : NotificationSenderAbstractFactory
     {
-        public SmsNotificationSender(NotificationAbstractFactory factory) : base(factory)
+        public SmsNotificationSenderAbstractFactory(TokenFactory factory) : base(factory)
         { }
 
-        public SmsNotificationSender() : base(new FourDigitsCodeFactory())
+        public SmsNotificationSenderAbstractFactory() : base(new FourDigitsCodeFactory())
         { }
     }
 
-    public class GuidTokenFactory : NotificationAbstractFactory
+    public class GuidTokenFactory : TokenFactory
     {
         public override string CreateToken()
         {
@@ -53,7 +53,7 @@ namespace Creational.Factory.Abstract
         }
     }
 
-    public class FourDigitsCodeFactory : NotificationAbstractFactory
+    public class FourDigitsCodeFactory : TokenFactory
     {
         private static readonly Random Random = new Random();
 

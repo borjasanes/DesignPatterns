@@ -45,11 +45,6 @@ namespace Behavioral.Observer
         }
     }
 
-    public abstract class Observer<T>
-    {
-        public abstract void Update(T subject);
-    }
-
     public class CrmObserver : IObserver<Contact>
     {
         public string Name { get; set; }
