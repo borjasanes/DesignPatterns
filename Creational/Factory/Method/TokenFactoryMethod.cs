@@ -12,11 +12,13 @@ namespace Creational.Factory.Method
     {
         public string GenetateToken()
         {
-            return CreateToken();
+            var token = CreateToken();
+            token = SanitizeToken(token);
+            return token;
         }
 
         protected abstract string CreateToken();
-
+        protected abstract string SanitizeToken(string token);
     }
 
     public class FourDigitTokenFactory : TokenFactoryMethod
@@ -25,6 +27,11 @@ namespace Creational.Factory.Method
         {
             return new Random().Next(1000, 9999).ToString();
         }
+
+        protected override string SanitizeToken(string token)
+        {
+            return token;
+        }
     }
 
     public class GuidTokenFactory : TokenFactoryMethod
@@ -32,6 +39,11 @@ namespace Creational.Factory.Method
         protected override string CreateToken()
         {
             return Guid.NewGuid().ToString();
+        }
+
+        protected override string SanitizeToken(string token)
+        {
+            return token.Remove('-').ToUpper();
         }
     }
 }
