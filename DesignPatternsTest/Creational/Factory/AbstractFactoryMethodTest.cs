@@ -12,7 +12,7 @@ namespace DesignPatternsTest.Creational.Factory
     public class AbstractFactoryMethodTest
     {
         [TestMethod]
-        public void Given_ASender_When_EmployeeFactory_Should_BuildEmployeeMail()
+        public void Given_ASender_When_AppFactory_Should_BuildEmployeeMail()
         {
             var mailProperties = new MailProperties
             {
@@ -26,15 +26,15 @@ namespace DesignPatternsTest.Creational.Factory
                 PhoneNumber = "+3399922000"
             };
 
-            var sut = new EmployeeNotificationSender();
+            var sut = new WebNotificationSender(new WelcomeWebTemplateFactory());
 
-            var mail = sut.SendMailNotification(mailProperties, MailType.Welcome);
+            var mail = sut.SendMailNotification(mailProperties);
 
-            Assert.AreEqual($"Welcome employee {mailProperties.Name}", mail.Body);
+            Assert.AreEqual($"Welcome web {mailProperties.Name}", mail.Body);
 
             var sms = sut.SendSmsNotification(smsProperties);
 
-            Assert.AreEqual($"Welcome employee {smsProperties.PhoneNumber}", sms.Body);
+            Assert.AreEqual($"Welcome web {smsProperties.PhoneNumber}", sms.Body);
         }
     }
 }

@@ -11,36 +11,22 @@ namespace Creational.Factory.Method
     /// </summary>
     public abstract class MailTemplateFactoryMethod
     {
-        public abstract IMailTemplate CreateTemplate(IMailProperties properties, MailType type);
+        public abstract IMailTemplate CreateTemplate(IMailProperties properties); //Can be parametriced with type if needed
     }
 
-    public class CustomerMailFactory : MailTemplateFactoryMethod
+    public class AppMailFactory : MailTemplateFactoryMethod
     {
-        public override IMailTemplate CreateTemplate(IMailProperties properties, MailType type)
+        public override IMailTemplate CreateTemplate(IMailProperties properties)
         {
-            switch (type)
-            {
-                case MailType.Welcome:
-                    return new WelcomeCustomerMailTemplate(properties);
-                case MailType.Goodby:
-                    return new GoodbyMailTemplate(properties);
-                default:
-                    return null;
-            }
+            return new WelcomeAppMailTemplate(properties);
         }
     }
 
-    public class EmployeeMailFactory : MailTemplateFactoryMethod
+    public class WebMailFactory : MailTemplateFactoryMethod
     {
-        public override IMailTemplate CreateTemplate(IMailProperties properties, MailType type)
+        public override IMailTemplate CreateTemplate(IMailProperties properties)
         {
-            switch (type)
-            {
-                case MailType.Welcome:
-                    return new WelcomeEmployeeMailTemplate(properties);
-                default:
-                    return null;
-            }
+            return new WelcomeWebMailTemplate(properties);
         }
     }
 }

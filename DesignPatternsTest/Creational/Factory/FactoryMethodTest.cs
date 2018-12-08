@@ -17,10 +17,10 @@ namespace DesignPatternsTest.Creational.Factory
                 Email = "potato@frito.com"
             };
 
-            var sut = new EmployeeMailFactory().CreateTemplate(properties, MailType.Welcome);
+            var sut = new WebMailFactory().CreateTemplate(properties);
             
-            Assert.IsNotNull(sut as WelcomeEmployeeMailTemplate);
-            Assert.IsNotNull("Welcome employee potato", sut.Body);
+            Assert.IsNotNull(sut as WelcomeWebMailTemplate);
+            Assert.IsNotNull("Welcome web potato", sut.Body);
         }
 
         [TestMethod]
@@ -32,10 +32,10 @@ namespace DesignPatternsTest.Creational.Factory
                 Email = "borja@plain.com"
             };
 
-            var sut = new CustomerMailFactory().CreateTemplate(properties, MailType.Welcome);
+            var sut = new AppMailFactory().CreateTemplate(properties);
 
-            Assert.IsNotNull(sut as WelcomeCustomerMailTemplate);
-            Assert.IsNotNull("Welcome customer borja", sut.Body);
+            Assert.IsNotNull(sut as WelcomeAppMailTemplate);
+            Assert.IsNotNull("Welcome app borja", sut.Body);
         }
     }
 }

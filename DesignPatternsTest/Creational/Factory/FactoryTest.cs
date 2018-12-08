@@ -9,7 +9,7 @@ namespace DesignPatternsTest.Creational.Factory
     public class FactoryTest
     {
         [TestMethod]
-        [DataRow(MailType.Welcome, "borja", "borja@plain.com", "Welcome borja")]
+        [DataRow(MailType.Welcome, "borja", "borja@plain.com", "Welcome app borja")]
         public void Given_AMailTemplate_When_IsWelcome_Should_CreateWelcomeBody(MailType mailType, string name, string email, string body)
         {
             var properties = new MailProperties
@@ -20,7 +20,7 @@ namespace DesignPatternsTest.Creational.Factory
 
             var sut = MailTemplateFactory.CreateTemplate(mailType, properties);
 
-            Assert.IsNotNull(sut as WelcomeCustomerMailTemplate);
+            Assert.IsNotNull(sut as WelcomeAppMailTemplate);
             Assert.AreEqual(sut.Body, body);
         }
     }

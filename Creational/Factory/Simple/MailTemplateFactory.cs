@@ -16,7 +16,7 @@ namespace Creational.Factory.Simple
             switch (mailType)
             {
                 case MailType.Welcome:
-                    return new WelcomeCustomerMailTemplate(properties);
+                    return new WelcomeAppMailTemplate(properties);
                 case MailType.Goodby:
                     return new GoodbyMailTemplate(properties);
                 default:

@@ -1,31 +1,31 @@
 ﻿namespace Creational.Factory.Models
 {
-    public class WelcomeCustomerMailTemplate: IMailTemplate
+    public class WelcomeAppMailTemplate : IMailTemplate
     {
         private readonly string _name;
 
-        public WelcomeCustomerMailTemplate(IMailProperties properties)
+        public WelcomeAppMailTemplate(IMailProperties properties)
         {
             To = properties.Email;
             _name = properties.Name;
         }
 
         public string To { get; set; }
-        public string Body => $"Welcome customer {_name}";
+        public string Body => $"Welcome app {_name}";
     }
 
-    public class WelcomeEmployeeMailTemplate : IMailTemplate
+    public class WelcomeWebMailTemplate : IMailTemplate
     {
         private readonly string _name;
 
-        public WelcomeEmployeeMailTemplate(IMailProperties properties)
+        public WelcomeWebMailTemplate(IMailProperties properties)
         {
             To = properties.Email;
             _name = properties.Name;
         }
 
         public string To { get; set; }
-        public string Body => $"Welcome employee {_name}";
+        public string Body => $"Welcome web {_name}";
     }
 
 }

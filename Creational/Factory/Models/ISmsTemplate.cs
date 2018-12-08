@@ -18,27 +18,27 @@
         string Body { get; }
     }
 
-    public class WelcomeCustomerSmsTemplate : ISmsTemplate
+    public class WelcomeAppSmsTemplate : ISmsTemplate
     {
 
-        public WelcomeCustomerSmsTemplate(ISmsProperties properties)
+        public WelcomeAppSmsTemplate(ISmsProperties properties)
         {
             PhoneNumber = properties.PhoneNumber;
         }
 
         public string PhoneNumber { get; set; }
-        public string Body => $"Welcome customer {PhoneNumber}";
+        public string Body => $"Welcome app {PhoneNumber}";
     }
 
-    public class WelcomeEmployeeSmsTemplate : ISmsTemplate
+    public class WelcomeWebSmsTemplate : ISmsTemplate
     {
 
-        public WelcomeEmployeeSmsTemplate(ISmsProperties properties)
+        public WelcomeWebSmsTemplate(ISmsProperties properties)
         {
             PhoneNumber = properties.PhoneNumber;
         }
 
         public string PhoneNumber { get; set; }
-        public string Body => $"Welcome employee {PhoneNumber}";
+        public string Body => $"Welcome web {PhoneNumber}";
     }
 }

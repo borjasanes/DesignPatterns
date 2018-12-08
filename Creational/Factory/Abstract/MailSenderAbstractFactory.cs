@@ -10,7 +10,7 @@ namespace Creational.Factory.Abstract
     /// </summary>
     public abstract class TemplateFactory
     {
-        public abstract IMailTemplate CreateMailTemplate(IMailProperties properties, MailType type);
+        public abstract IMailTemplate CreateMailTemplate(IMailProperties properties);
         public abstract ISmsTemplate CreateSmsTemplate(ISmsProperties properties);
     }
 
@@ -23,9 +23,9 @@ namespace Creational.Factory.Abstract
             _templateFactory = templateFactory;
         }
 
-        public IMailTemplate SendMailNotification(IMailProperties properties, MailType type)
+        public IMailTemplate SendMailNotification(IMailProperties properties)
         {
-            return _templateFactory.CreateMailTemplate(properties, type);
+            return _templateFactory.CreateMailTemplate(properties);
         }
 
         public ISmsTemplate SendSmsNotification(ISmsProperties properties)
@@ -34,63 +34,47 @@ namespace Creational.Factory.Abstract
         }
     }
 
-    public class CustomerNotificationSender : NotificationSenderAbstractFactory
+    public class AppNotificationSender : NotificationSenderAbstractFactory
     {
-        public CustomerNotificationSender(TemplateFactory factory) : base(factory)
+        public AppNotificationSender(TemplateFactory factory) : base(factory)
         { }
 
-        public CustomerNotificationSender() : base(new CustomerTemplateFactory())
+        public AppNotificationSender() : base(new WelcomeAppTemplateFactory())
         { }
     }
 
-    public class EmployeeNotificationSender : NotificationSenderAbstractFactory
+    public class WebNotificationSender : NotificationSenderAbstractFactory
     {
-        public EmployeeNotificationSender(TemplateFactory factory) : base(factory)
+        public WebNotificationSender(TemplateFactory factory) : base(factory)
         { }
 
-        public EmployeeNotificationSender() : base(new EmployeeTemplateFactory())
+        public WebNotificationSender() : base(new WelcomeWebTemplateFactory())
         { }
     }
 
-    public class CustomerTemplateFactory : TemplateFactory
+    public class WelcomeAppTemplateFactory : TemplateFactory
     {
-        public override IMailTemplate CreateMailTemplate(IMailProperties properties, MailType type)
+        public override IMailTemplate CreateMailTemplate(IMailProperties properties)
         {
-            switch (type)
-            {
-                case MailType.Welcome:
-                    return new WelcomeCustomerMailTemplate(properties);
-                case MailType.Goodby:
-                    return null;
-                default:
-                    return null;
-            }
+            return new WelcomeAppMailTemplate(properties);
         }
 
         public override ISmsTemplate CreateSmsTemplate(ISmsProperties properties)
         {
-            return new WelcomeCustomerSmsTemplate(properties);
+            return new WelcomeAppSmsTemplate(properties);
         }
     }
 
-    public class EmployeeTemplateFactory : TemplateFactory
+    public class WelcomeWebTemplateFactory : TemplateFactory
     {
-        public override IMailTemplate CreateMailTemplate(IMailProperties properties, MailType type)
+        public override IMailTemplate CreateMailTemplate(IMailProperties properties)
         {
-            switch (type)
-            {
-                case MailType.Welcome:
-                    return new WelcomeEmployeeMailTemplate(properties);
-                case MailType.Goodby:
-                    return null;
-                default:
-                    return null;
-            }
+            return new WelcomeWebMailTemplate(properties);
         }
 
         public override ISmsTemplate CreateSmsTemplate(ISmsProperties properties)
         {
-            return new WelcomeEmployeeSmsTemplate(properties);
+            return new WelcomeWebSmsTemplate(properties);
         }
     }
 }
