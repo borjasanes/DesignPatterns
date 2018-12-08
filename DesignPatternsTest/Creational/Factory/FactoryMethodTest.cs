@@ -10,7 +10,7 @@ namespace DesignPatternsTest.Creational.Factory
         [TestMethod]
         public void Given_ATokenFactory_When_FourDigit_Should_Create4DigitCode()
         {
-            var sut = new FourDigitTokenFactory().CreateToken();
+            var sut = new FourDigitTokenFactory().GenetateToken();
             
             Assert.IsNotNull(4, sut);
         }
@@ -18,7 +18,7 @@ namespace DesignPatternsTest.Creational.Factory
         [TestMethod]
         public void Given_ATokenFactory_When_Guid_Should_CreateGuidCode()
         {
-            var sut = new GuidTokenFactory().CreateToken();
+            var sut = new GuidTokenFactory().GenetateToken();
 
             Assert.IsNotNull(36, sut);
         }

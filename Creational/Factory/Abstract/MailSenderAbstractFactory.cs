@@ -3,6 +3,10 @@ using Creational.Factory.Method;
 
 namespace Creational.Factory.Abstract
 {
+    /// <summary>
+    /// the Abstract Factory pattern, a class delegates the responsibility
+    /// of object instantiation to another object via composition ...
+    /// </summary>
     public abstract class NotificationAbstractFactory
     {
         public abstract string CreateToken();
@@ -19,7 +23,7 @@ namespace Creational.Factory.Abstract
 
         public string SendNotification(string from, string to)
         {
-            return _notificationAbstractFactory.CreateToken(); // abstract factory
+            return _notificationAbstractFactory.CreateToken();
         }
     }
 
