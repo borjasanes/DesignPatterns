@@ -1,4 +1,5 @@
 ﻿using Creational.Factory;
+using Creational.Factory.Models;
 using Creational.Factory.Simple;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -8,14 +9,19 @@ namespace DesignPatternsTest.Creational.Factory
     public class FactoryTest
     {
         [TestMethod]
-        [DataRow(TokenType.Guid, 36)]
-        [DataRow(TokenType.FourDigitsCode, 4)]
-        public void Given_ATokenType_Shoul_BeValidLength(TokenType tokenType, int tokenLength)
+        [DataRow(MailType.Welcome, "borja", "borja@plain.com", "Welcome borja")]
+        public void Given_AMailTemplate_When_IsWelcome_Should_CreateWelcomeBody(MailType mailType, string name, string email, string body)
         {
-            var sut = TokenFactory.GetToken(tokenType);
+            var properties = new MailProperties
+            {
+                Name = name,
+                Email = email
+            };
 
-            Assert.IsNotNull(sut);
-            Assert.AreEqual(tokenLength, sut.Length);
+            var sut = MailTemplateFactory.CreateTemplate(mailType, properties);
+
+            Assert.IsNotNull(sut as WelcomeCustomerMailTemplate);
+            Assert.AreEqual(sut.Body, body);
         }
     }
 }

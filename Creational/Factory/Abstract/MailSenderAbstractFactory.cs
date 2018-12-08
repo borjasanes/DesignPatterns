@@ -1,5 +1,6 @@
 ﻿using System;
 using Creational.Factory.Method;
+using Creational.Factory.Models;
 
 namespace Creational.Factory.Abstract
 {
@@ -7,59 +8,89 @@ namespace Creational.Factory.Abstract
     /// the Abstract Factory pattern, a class delegates the responsibility
     /// of object instantiation to another object via composition
     /// </summary>
-    public abstract class TokenFactory
+    public abstract class TemplateFactory
     {
-        public abstract string CreateToken();
+        public abstract IMailTemplate CreateMailTemplate(IMailProperties properties, MailType type);
+        public abstract ISmsTemplate CreateSmsTemplate(ISmsProperties properties);
     }
 
     public class NotificationSenderAbstractFactory
     {
-        private readonly TokenFactory _tokenFactory;
+        private readonly TemplateFactory _templateFactory;
 
-        protected NotificationSenderAbstractFactory(TokenFactory tokenFactory)
+        public NotificationSenderAbstractFactory(TemplateFactory templateFactory)
         {
-            _tokenFactory = tokenFactory;
+            _templateFactory = templateFactory;
         }
 
-        public string SendNotification(string from, string to)
+        public IMailTemplate SendMailNotification(IMailProperties properties, MailType type)
         {
-            return _tokenFactory.CreateToken();
+            return _templateFactory.CreateMailTemplate(properties, type);
         }
-    }
 
-    public class MailNotificationSenderAbstractFactory : NotificationSenderAbstractFactory
-    {
-        public MailNotificationSenderAbstractFactory(TokenFactory factory) : base(factory)
-        { }
-
-        public MailNotificationSenderAbstractFactory() : base(new GuidTokenFactory())
-        { }
-    }
-
-    public class SmsNotificationSenderAbstractFactory : NotificationSenderAbstractFactory
-    {
-        public SmsNotificationSenderAbstractFactory(TokenFactory factory) : base(factory)
-        { }
-
-        public SmsNotificationSenderAbstractFactory() : base(new FourDigitsCodeFactory())
-        { }
-    }
-
-    public class GuidTokenFactory : TokenFactory
-    {
-        public override string CreateToken()
+        public ISmsTemplate SendSmsNotification(ISmsProperties properties)
         {
-            return Guid.NewGuid().ToString();
+            return _templateFactory.CreateSmsTemplate(properties);
         }
     }
 
-    public class FourDigitsCodeFactory : TokenFactory
+    public class CustomerNotificationSender : NotificationSenderAbstractFactory
     {
-        private static readonly Random Random = new Random();
+        public CustomerNotificationSender(TemplateFactory factory) : base(factory)
+        { }
 
-        public override string CreateToken()
+        public CustomerNotificationSender() : base(new CustomerTemplateFactory())
+        { }
+    }
+
+    public class EmployeeNotificationSender : NotificationSenderAbstractFactory
+    {
+        public EmployeeNotificationSender(TemplateFactory factory) : base(factory)
+        { }
+
+        public EmployeeNotificationSender() : base(new EmployeeTemplateFactory())
+        { }
+    }
+
+    public class CustomerTemplateFactory : TemplateFactory
+    {
+        public override IMailTemplate CreateMailTemplate(IMailProperties properties, MailType type)
         {
-            return Random.Next(1000, 9999).ToString();
+            switch (type)
+            {
+                case MailType.Welcome:
+                    return new WelcomeCustomerMailTemplate(properties);
+                case MailType.Goodby:
+                    return null;
+                default:
+                    return null;
+            }
+        }
+
+        public override ISmsTemplate CreateSmsTemplate(ISmsProperties properties)
+        {
+            return new WelcomeCustomerSmsTemplate(properties);
+        }
+    }
+
+    public class EmployeeTemplateFactory : TemplateFactory
+    {
+        public override IMailTemplate CreateMailTemplate(IMailProperties properties, MailType type)
+        {
+            switch (type)
+            {
+                case MailType.Welcome:
+                    return new WelcomeEmployeeMailTemplate(properties);
+                case MailType.Goodby:
+                    return null;
+                default:
+                    return null;
+            }
+        }
+
+        public override ISmsTemplate CreateSmsTemplate(ISmsProperties properties)
+        {
+            return new WelcomeEmployeeSmsTemplate(properties);
         }
     }
 }

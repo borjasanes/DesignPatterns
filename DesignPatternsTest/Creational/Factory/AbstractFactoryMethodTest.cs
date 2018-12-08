@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using Creational.Factory.Abstract;
+using Creational.Factory.Models;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace DesignPatternsTest.Creational.Factory
@@ -11,29 +12,29 @@ namespace DesignPatternsTest.Creational.Factory
     public class AbstractFactoryMethodTest
     {
         [TestMethod]
-        [DataRow("borja", "plain")]
-        public void Given_Senders_When_DefaultFactory_Should_BeValidToken(string from, string to)
+        public void Given_ASender_When_EmployeeFactory_Should_BuildEmployeeMail()
         {
-            var sut = new MailNotificationSenderAbstractFactory().SendNotification(from, to);
+            var mailProperties = new MailProperties
+            {
+                Name = "potato",
+                Email = "potato@frito.com"
+            };
 
-            Assert.AreEqual(36, sut.Length);
+            var smsProperties = new SmsProperties
+            {
+                Name = "potato",
+                PhoneNumber = "+3399922000"
+            };
 
-            var sut2 = new SmsNotificationSenderAbstractFactory().SendNotification(from, to);
+            var sut = new EmployeeNotificationSender();
 
-            Assert.AreEqual(4, sut2.Length);
-        }
+            var mail = sut.SendMailNotification(mailProperties, MailType.Welcome);
 
-        [TestMethod]
-        [DataRow("borja", "plain")]
-        public void Given_ASender_When_ChangeProvider_Should_ReturnDiferentToken(string from, string to)
-        {
-            var sut = new MailNotificationSenderAbstractFactory(new FourDigitsCodeFactory()).SendNotification(from, to);
+            Assert.AreEqual($"Welcome employee {mailProperties.Name}", mail.Body);
 
-            Assert.AreEqual(4, sut.Length);
+            var sms = sut.SendSmsNotification(smsProperties);
 
-            var sut2 = new SmsNotificationSenderAbstractFactory(new GuidTokenFactory()).SendNotification("from", "to");
-
-            Assert.AreEqual(36, sut2.Length);
+            Assert.AreEqual($"Welcome employee {smsProperties.PhoneNumber}", sms.Body);
         }
     }
 }
