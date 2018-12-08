@@ -16,4 +16,19 @@ namespace Behavioral.Command
     {
         void Handle(TCommand command);
     }
+
+    public class NewUserCommandHandler : ICommandHandler<NewUser>
+    {
+        public void Handle(NewUser command)
+        {
+            //operation
+        }
+    }
+
+    public class NewUser
+    {
+        public string Name { get; set; }
+        public string Surname { get; set; }
+        public DateTime Birthday { get; set; }
+    }
 }
