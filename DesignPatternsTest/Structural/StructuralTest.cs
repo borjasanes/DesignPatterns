@@ -20,9 +20,9 @@ namespace DesignPatternsTest.Structural
 
             Assert.AreEqual(20, sut2.CalculateDiscount());
 
-            var sut3 = new CouponBio(sut2); // apply 2 times coupon bio discount
+            var sut3 = new CouponVegan(sut2); // apply 2 times coupon bio discount
 
-            Assert.AreEqual(40, sut3.CalculateDiscount());
+            Assert.AreEqual(60, sut3.CalculateDiscount());
         }
     }
 }
