@@ -26,12 +26,7 @@ namespace DesignPatternsTest.Behavioral.Command
                 Surname = "potato surname",
             });
 
-            sut.Handle(new NewUser
-            {
-                Name = "potato",
-                Surname = "potato surname",
-                Birthday = DateTime.UtcNow
-            });
+            sut.Undo();
         }
     }
 }

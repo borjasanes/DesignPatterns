@@ -15,13 +15,26 @@ namespace Behavioral.Command
     public interface ICommandHandler<in TCommand>
     {
         void Handle(TCommand command);
+        void Undo();
     }
 
     public class NewUserCommandHandler : ICommandHandler<NewUser>
     {
+        private readonly List<NewUserMemento> _mementos =
+            new List<NewUserMemento>();
+
         public void Handle(NewUser command)
         {
-            //operation
+            //preform action with the command
+            _mementos.Add(new NewUserMemento(command));
+
+        }
+
+        public void Undo()
+        {
+            var newUser = (_mementos[_mementos.Count - 1].GetNewUser());
+            //revert action
+            _mementos.RemoveAt(_mementos.Count - 1);
         }
     }
 
@@ -30,5 +43,26 @@ namespace Behavioral.Command
         public string Name { get; set; }
         public string Surname { get; set; }
         public DateTime Birthday { get; set; }
+
+        public NewUser Clone()
+        {
+            return MemberwiseClone() as NewUser;
+        }
+    }
+
+    public class NewUserMemento
+    {
+        private readonly NewUser _newUser;
+
+        public NewUserMemento(NewUser newUser)
+        {
+            _newUser = newUser.Clone();
+        }
+
+        public NewUser GetNewUser()
+        {
+            return _newUser;
+        }
+
     }
 }
