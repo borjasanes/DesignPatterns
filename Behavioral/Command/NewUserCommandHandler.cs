@@ -18,9 +18,9 @@ namespace Behavioral.Command
         void Undo();
     }
 
-    public class NewUserCommandHandler : ICommandHandler<NewUser>
+    public class NewUserCommandHandler : ICommandHandler<NewUser> //originator
     {
-        private readonly List<NewUserMemento> _mementos =
+        private readonly List<NewUserMemento> _mementos = //Caretaker 
             new List<NewUserMemento>();
 
         public void Handle(NewUser command)
@@ -50,7 +50,7 @@ namespace Behavioral.Command
         }
     }
 
-    public class NewUserMemento
+    public class NewUserMemento //memento
     {
         private readonly NewUser _newUser;
 
